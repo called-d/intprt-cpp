@@ -47,7 +47,7 @@ const char * c_head =
     "\n"
     "\n"
     "// built-in functions\n"
-    "inline void concat() {\n"
+    "static inline void concat() {\n"
     "    char *a = *(sp-1);\n"
     "    char *b = *(sp-2);\n"
     "\n"
@@ -60,7 +60,7 @@ const char * c_head =
     "}\n"
     "\n"
     "\n"
-    "inline void add() {\n"
+    "static inline void add() {\n"
     "    int a = atoi(top(sp)); mpop(sp);\n"
     "    int b = atoi(top(sp)); mpop(sp);\n"
     "\n"
@@ -69,7 +69,7 @@ const char * c_head =
     "    push(sp, tmp);\n"
     "}\n"
     "\n"
-    "inline void negate() {\n"
+    "static inline void negate() {\n"
     "    int a = atoi(top(sp)); mpop(sp);\n"
     "\n"
     "    char *tmp = (char *) calloc(sizeof(char), (digit(-a) + 1));\n"
@@ -339,7 +339,7 @@ pair<string, string> c_s(shared_ptr<Code> c,
                 auto tmp = c_s(argstack.top(), vartable, {}, bind, varused_counter);
 
                 res += tmp.second;
-                res += "inline void " + n /*+ to_string(varused_counter[n])*/ + "() {\n";
+                res += "static inline void " + n /*+ to_string(varused_counter[n])*/ + "() {\n";
                 res += tmp.first;
                 res += "}\n";
             
