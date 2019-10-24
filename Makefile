@@ -37,7 +37,9 @@ compile: emelio
 clean: 
 	rm *.cpp.cc
 
-build: $(OBJS) emelio.h
+build: emelio
+
+emelio: $(OBJS) emelio.h
 	$(CXX) $(CXXFLAGS) -o emelio $(OBJS)
 
 sml-build: $(SML_OBJS) emelio.h
