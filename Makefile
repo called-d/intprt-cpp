@@ -1,3 +1,6 @@
+CXX = g++
+CXXFLAGS += -g3
+
 %.cpp.cc: %.cpp
 	python pp.py $<
 	astyle $@ -Y
@@ -8,21 +11,21 @@
 	ranlib $@
 
 tkutil.o: Tokenizer/util.cpp
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 tk.o: Tokenizer/tokenizer.cpp
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 util.o: util.cpp emelio.h util.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 reduction.o: reduction.cpp.cc emelio.h util.h notation.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 parse.o: parse.cpp.cc emelio.h util.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 notation.o: notation.cpp emelio.h util.h notation.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 transpile.o: transpile.cpp emelio.h util.h notation.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 emelio.o: emelio.cpp emelio.h util.h
-	g++ -c $< -g3 -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
 OBJS = tkutil.o tk.o util.o parse.o notation.o reduction.o transpile.o emelio.o 
@@ -35,10 +38,10 @@ clean:
 	rm *.cpp.cc
 
 build: $(OBJS) emelio.h
-	g++ -o emelio $(OBJS) -g3
+	$(CXX) $(CXXFLAGS) -o emelio $(OBJS)
 
 sml-build: $(SML_OBJS) emelio.h
-	g++ -o emelio $(SML_OBJS) -g3
+	$(CXX) $(CXXFLAGS) -o emelio $(SML_OBJS)
 
 
 clang: $(OBJS)
