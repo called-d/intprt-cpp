@@ -44,7 +44,7 @@ sml-build: $(SML_OBJS) emelio.h
 clang: $(OBJS)
 	clang -std=c++17 -o emelio $(OBJS)
 
-test:
+test: emelio
 	./utest.sh
 
 run: emelio
